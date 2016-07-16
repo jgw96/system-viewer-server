@@ -28,6 +28,11 @@ app.get('/cputemp', (req, res) => {
     });
 });
 
+app.get ('/network', (req, res) => {
+    let net = os.networkInterfaces();
+    res.send({net: net});
+});
+
 app.get('/mem', (req, res) => {
     let freeMem = os.freemem();
     let totalMem = os.totalmem();
