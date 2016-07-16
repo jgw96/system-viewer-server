@@ -28,6 +28,26 @@ app.get('/cputemp', (req, res) => {
     });
 });
 
+app.get('/reboot', (req, res) => {
+    exec('systemctl reboot', (error, stdout, stderr) => {
+        if (error) {
+            console.error(error);
+        } else {
+            res.send("rebooting");
+        }
+    });
+});
+
+app.get('/shutdown', (req, res) => {
+    exec('systemctl shutdown', (error, stdout, stderr) => {
+        if (error) {
+            console.error(error);
+        } else {
+            res.send("shutting down");
+        }
+    });
+});
+
 app.get ('/network', (req, res) => {
     let net = os.networkInterfaces();
     res.send({net: net});
